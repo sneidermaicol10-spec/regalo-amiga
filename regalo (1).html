@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amiga - Vai Vai Trair 🌻🔥</title>
+    <style>
+        /* Fondo negro profundo con degradado radial brillante */
+        body { 
+            background: radial-gradient(circle, #2a2a00 0%, #000000 100%); 
+            color: #fff; 
+            font-family: 'Anton', sans-serif; /* Fuente fuerte estilo urbano */
+            overflow: hidden; 
+            margin: 0; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+        }
+
+        /* Botón de inicio neón amarillo */
+        #boton-abrir { 
+            padding: 20px 50px; 
+            font-size: 26px; 
+            background: #000; 
+            color: #ffd700; 
+            border: 4px solid #ffd700; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            box-shadow: 0 0 20px #ffd700, inset 0 0 10px #ffd700; 
+            transition: all 0.2s ease; 
+            z-index: 100; 
+            letter-spacing: 2px;
+        }
+
+        #boton-abrir:hover { 
+            background: #ffd700;
+            color: #000;
+            box-shadow: 0 0 40px #ffd700, inset 0 0 20px #fff; 
+        }
+
+        /* Contenedor del contenido (oculto al inicio) */
+        #contenido { 
+            display: none; 
+            text-align: center; 
+            z-index: 10; 
+            flex-direction: column; 
+            align-items: center; 
+            width: 90%;
+        }
+
+        h1 { 
+            color: #ffd700; 
+            font-size: 4em; 
+            text-shadow: 0 0 15px #ffd700, 0 0 30px #ffaa00; 
+            margin: 0; 
+            text-transform: uppercase;
+            animation: pulsoTexto 0.5s infinite alternate; /* Pulso rápido */
+        }
+
+        p { 
+            font-size: 1.5em; 
+            color: #ffffff; 
+            font-family: 'Segoe UI', sans-serif;
+            margin-top: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            font-weight: bold;
+        }
+
+        /* Girasol gigante rítmico */
+        .girasol-central { 
+            font-size: 150px; 
+            animation: girarRapido 10s linear infinite, pulsoGirasol 0.5s infinite alternate; 
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 1)); 
+            margin-bottom: -20px;
+        }
+
+        /* Flores y destellos flotantes rítmicos */
+        .flor-flotante { 
+            position: absolute; 
+            animation: flotarRapido linear infinite; 
+            opacity: 0; 
+            z-index: 1; 
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));
+        }
+
+        /* Keyframes de Animaciones Funk */
+        @keyframes pulsoTexto { 
+            0% { transform: scale(1); text-shadow: 0 0 15px #ffd700; } 
+            100% { transform: scale(1.03); text-shadow: 0 0 30px #ffaa00, 0 0 50px #ffd700; } 
+        }
+        @keyframes pulsoGirasol { 
+            0% { transform: rotate(0deg) scale(1); } 
+            100% { transform: rotate(0deg) scale(1.1); } 
+        }
+        @keyframes girarRapido { 
+            100% { transform: rotate(360deg); } 
+        }
+        @keyframes flotarRapido { 
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0; } 
+            10% { opacity: 1; } 
+            90% { opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(720deg) scale(1.3); opacity: 0; } 
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <button id="boton-abrir">🌻 Vai Vai Trair! 🌻</button>
+
+    <div id="contenido">
+        <div class="girasol-central">🌻</div>
+        <h1>Para ti</h1>
+        <p>¡Disfruta del ritmo, amiga!</p>
+    </div>
+
+    <audio id="musica_fondo" loop>
+        <source src="vaivaitrair.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const boton = document.getElementById('boton-abrir');
+        const contenido = document.getElementById('contenido');
+        const audio = document.getElementById('musica_fondo');
+
+        // Evento de clic
+        boton.addEventListener('click', () => {
+            boton.style.display = 'none';
+            contenido.style.display = 'flex';
+            audio.play(); // Inicia la canción
+            iniciarLluvia();
+        });
+
+        // Generador de flores y destellos rítmicos
+        function iniciarLluvia() {
+            setInterval(() => {
+                const flor = document.createElement('div');
+                // Alterna entre girasol, flor y destellos neón
+                const opciones = ['🌻', '🌼', '✨', '⚡️'];
+                flor.innerHTML = opciones[Math.floor(Math.random() * opciones.length)];
+                
+                flor.classList.add('flor-flotante');
+                flor.style.left = Math.random() * 100 + 'vw';
+                flor.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Subida rápida (2-5s)
+                flor.style.fontSize = (Math.random() * 30 + 20) + 'px'; // Tamaños variados
+                
+                document.body.appendChild(flor);
+                
+                // Limpieza
+                setTimeout(() => flor.remove(), 5000);
+            }, 150); // Lluvia intensa: una flor cada 150ms
+        }
+    </script>
+</body>
+</html>
